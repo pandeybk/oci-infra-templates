@@ -22,14 +22,22 @@ variable "defined_tags" {
   type = map(string)
 }
 
-variable "openshift_image_source_uri" {
-  type = string
-}
-
 variable "control_plane_shape" {
   type = string
 }
 
 variable "compute_shape" {
   type = string
+}
+
+variable "openshift_master_image_source_uri" {
+  type        = string
+  description = "OpenShift image URI specifically for master nodes (optional)."
+  default     = ""
+}
+
+variable "openshift_worker_image_source_uri" {
+  type        = string
+  description = "OpenShift image URI specifically for worker nodes (optional)."
+  default     = ""
 }

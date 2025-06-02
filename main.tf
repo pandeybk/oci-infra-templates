@@ -73,7 +73,8 @@ module "image" {
   image_name                  = var.cluster_name
   is_control_plane_iscsi_type = local.is_control_plane_iscsi_type
   is_compute_iscsi_type       = local.is_compute_iscsi_type
-  openshift_image_source_uri  = var.openshift_image_source_uri
+  openshift_master_image_source_uri = var.openshift_master_image_source_uri
+  openshift_worker_image_source_uri = var.openshift_worker_image_source_uri
   control_plane_shape         = var.control_plane_shape
   compute_shape               = var.compute_shape
 
@@ -158,7 +159,9 @@ module "compute" {
   openshift_tag_openshift_resource_value = local.openshift_tag_openshift_resource_value
 
   // Depedency on image
-  op_image_openshift_image = module.image.op_image_openshift_image
+  op_image_openshift_master_image = module.image.op_image_openshift_master_image
+  op_image_openshift_worker_image = module.image.op_image_openshift_worker_image
+
 
   // Depedency on networks
   op_subnet_private                                  = module.network.op_subnet_private

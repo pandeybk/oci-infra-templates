@@ -19,7 +19,7 @@ variableGroups:
 
 - title: "Control Plane Node Configuration"
   variables:
-  - openshift_image_source_uri
+  - openshift_master_image_source_uri
   - control_plane_shape
   - control_plane_count
   - control_plane_ocpu
@@ -30,6 +30,7 @@ variableGroups:
 
 - title: "Compute Node Configuration"
   variables:
+  - openshift_worker_image_source_uri
   - compute_shape
   - compute_count
   - compute_ocpu
@@ -103,10 +104,18 @@ variables:
     default: true
     required: true
 
-  openshift_image_source_uri:
+  openshift_master_image_source_uri:
     type: string
-    title: OpenShift Image Source URI
-    description: The OCI Object Storage URI for the OpenShift image. Before provisioning resources through this Resource Manager stack, users should upload the OpenShift image to OCI Object Storage, create a pre-authenticated requests (PAR) uri, and paste the uri to this block. For more detail regarding Object storage and PAR, please visit https://docs.oracle.com/en-us/iaas/Content/Object/Concepts/objectstorageoverview.htm and https://docs.oracle.com/en-us/iaas/Content/Object/Tasks/usingpreauthenticatedrequests.htm .
+    title: Control Plane Image Source URI
+    description: Optional override for OpenShift image used on control plane (master) nodes.
+    default: ""
+    required: true
+    visible: create_openshift_instances
+
+  openshift_worker_image_source_uri:
+    type: string
+    title: Compute Node Image Source URI
+    description: Optional override for OpenShift image used on compute (worker) nodes.
     default: ""
     required: true
     visible: create_openshift_instances

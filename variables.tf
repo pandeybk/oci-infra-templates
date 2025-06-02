@@ -188,10 +188,16 @@ variable "public_cidr" {
   description = "The IPv4 CIDR blocks for the public subnet of your OpenShift Cluster. The default value is 10.0.0.0/20. "
 }
 
-variable "openshift_image_source_uri" {
+variable "openshift_master_image_source_uri" {
   type        = string
-  description = "The OCI Object Storage URL for the OpenShift image. Before provisioning resources through this Resource Manager stack, users should upload the OpenShift image to OCI Object Storage, create a pre-authenticated requests (PAR) uri, and paste the uri to this block. For more detail regarding Object storage and PAR, please visit https://docs.oracle.com/en-us/iaas/Content/Object/Concepts/objectstorageoverview.htm and https://docs.oracle.com/en-us/iaas/Content/Object/Tasks/usingpreauthenticatedrequests.htm ."
-  default     = "TODO"
+  description = "OpenShift image URI specifically for master nodes (optional)."
+  default     = ""
+}
+
+variable "openshift_worker_image_source_uri" {
+  type        = string
+  description = "OpenShift image URI specifically for worker nodes (optional)."
+  default     = ""
 }
 
 variable "enable_private_dns" {

@@ -35,7 +35,7 @@ resource "oci_core_instance" "control_plane_node" {
     source_type             = "image"
     boot_volume_size_in_gbs = var.control_plane_boot_size
     boot_volume_vpus_per_gb = var.control_plane_boot_volume_vpus_per_gb
-    source_id               = var.op_image_openshift_image
+    source_id               = var.op_image_openshift_master_image
   }
 
   dynamic "shape_config" {
@@ -78,7 +78,7 @@ resource "oci_core_instance" "compute_node" {
     source_type             = "image"
     boot_volume_size_in_gbs = var.compute_boot_size
     boot_volume_vpus_per_gb = var.compute_boot_volume_vpus_per_gb
-    source_id               = var.op_image_openshift_image
+    source_id               = var.op_image_openshift_worker_image
   }
 
   dynamic "shape_config" {

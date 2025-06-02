@@ -94,8 +94,15 @@ variable "op_network_security_group_cluster_compute_nsg" {
   type = string
 }
 
-variable "op_image_openshift_image" {
-  type = string
+
+variable "op_image_openshift_master_image" {
+  type        = string
+  description = "Image OCID to be used for control plane (master) nodes."
+}
+
+variable "op_image_openshift_worker_image" {
+  type        = string
+  description = "Image OCID to be used for compute (worker) nodes."
 }
 
 variable "op_lb_openshift_api_int_lb" {
